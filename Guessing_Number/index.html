@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Guessing Game</title>
+  <style>
+    body {
+
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    p {
+      color: #555;
+      margin: 10px 0;
+    }
+
+    input {
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 8px 16px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #resultText {
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    #guessCount {
+      margin-top: 10px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <h1>Guessing Game</h1>
+  <p>Guess a number between 1 and 100:</p>
+  <input type="number" id="guessInput">
+  <button onclick="checkGuess()">Submit</button>
+  <p id="resultText"></p>
+  <p id="guessCount"></p>
+  <img id="myImg" src="image.jpg" alt="Smiley" >
+
+  <script>
+    // Generate a random number between 1 and 100
+    const targetNumber = Math.floor(Math.random() * 100) + 1;
+    let guessCount = 0;
+
+    function checkGuess() {
+      const guessInput = document.getElementById("guessInput");
+      const guess = parseInt(guessInput.value);
+
+      if (isNaN(guess)) {
+        document.getElementById("resultText").textContent = "Invalid input. Please enter a number.";
+        return;
+      }
+
+      if (guess < 1 || guess > 100) {
+        document.getElementById("resultText").textContent = "Please enter a number between 1 and 100.";
+        return;
+      }
+
+      guessCount++;
+
+      if (guess === targetNumber) {
+        document.getElementById("resultText").textContent = "Congratulations! You guessed the correct number.";
+        document.getElementById("guessCount").textContent = `Number of Guesses: ${guessCount}`;
+        document.getElementById("myImg".innerHTML)
+      } else if (guess < targetNumber) {
+        document.getElementById("resultText").textContent = "Too low. Try again.";
+      } else {
+        document.getElementById("resultText").textContent = "Too high. Try again.";
+      }
+
+      guessInput.value = ""; // Clear the input field
+    }
+  </script>
+</body>
+</html>
